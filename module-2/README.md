@@ -137,6 +137,46 @@ streamlit run module-2/hour7_lab_refinement_loop.py
 
 ---
 
+### `hour4b_lab_output_format_reliability.py` — Output Format Reliability Lab (Bonus)
+
+**Hour 4 bonus.** The same data extraction task runs with 5 different format instructions (No Format, Natural Language, Bullet List, JSON strict schema, Custom Schema), each **3 times** at temperature 0.7. Every response is parsed programmatically — reliability = successful parses / 3.
+
+**Key learning:** Format instructions are not cosmetic. An unparseable response crashes an agentic pipeline. Structured formats (JSON with schema, custom labelled schema) are measurably more reliable than prose.
+
+```bash
+streamlit run module-2/hour4b_lab_output_format_reliability.py
+```
+
+---
+
+### `hour4c_lab_prompt_compression.py` — Prompt Compression Lab (Bonus)
+
+**Hour 4 bonus.** Start with a full 6-element prompt (sidebar toggles each element). After every configuration change, run the prompt and an LLM judge scores specificity, structure, and actionability (1–5 each). A history table and two line charts track quality vs token count across all runs.
+
+**Key learning:** Every removed element saves tokens but risks quality degradation. The compression lab finds the minimum viable prompt — the shortest prompt that maintains acceptable quality.
+
+**Suggested experiment:** run all 6 elements → remove Examples → remove Role → remove Context → Task only. Observe where the quality cliff appears.
+
+```bash
+streamlit run module-2/hour4c_lab_prompt_compression.py
+```
+
+---
+
+### `hour6b_lab_chain_of_thought.py` — Chain-of-Thought Explorer (Bonus)
+
+**Hour 6 bonus.** The same reasoning problem is sent to Claude three ways simultaneously: Direct (no instruction), Zero-shot CoT ("think step by step"), and Few-shot CoT (2 worked examples with reasoning chains). A judge call checks correctness and scores reasoning quality (1–5).
+
+**Key learning:** CoT externalises the working memory the model needs for multi-step problems. Few-shot CoT installs a specific reasoning template — not just "some reasoning." Students see directly which problems CoT solves and which it doesn't.
+
+**Pre-loaded problems:** Bridge crossing puzzle, marble algebra, probability, set theory — each chosen because Direct often fails while CoT succeeds.
+
+```bash
+streamlit run module-2/hour6b_lab_chain_of_thought.py
+```
+
+---
+
 ### `Module2_Prompt_Fundamentals_Exercises.ipynb` — Jupyter Notebook (Reference)
 
 The complete exercise notebook for Module 2. Covers all four hours with fill-in-the-blank exercises, model answers, and a bonus combined pipeline. Use as a reference or for students who prefer a notebook environment.
@@ -161,6 +201,11 @@ streamlit run module-2/hour4_lab_prompt_anatomy.py
 streamlit run module-2/hour5_lab_prompt_types.py
 streamlit run module-2/hour6_lab_zero_shot_vs_fewshot.py
 streamlit run module-2/hour7_lab_refinement_loop.py
+
+# Bonus labs
+streamlit run module-2/hour4b_lab_output_format_reliability.py
+streamlit run module-2/hour4c_lab_prompt_compression.py
+streamlit run module-2/hour6b_lab_chain_of_thought.py
 ```
 
 ---
