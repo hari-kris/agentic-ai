@@ -10,6 +10,9 @@ tavily-python>=0.7.12
 textstat
 vertexai
 
+# === Streamlit ===
+streamlit
+
 # === Web Framework + API ===
 fastapi
 pydantic
