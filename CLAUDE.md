@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A professional 30-hour Agentic AI course (9 modules). Each module is a self-contained set of interactive Streamlit labs that call the Claude API to teach agentic AI concepts hands-on. Modules completed so far: `module_1/` (Hours 1–3), `module-2/` (Hours 4–7), `module-3/` (Hours 8–11).
+A professional 30-hour Agentic AI course (9 modules). Each module is a self-contained set of interactive Streamlit labs that call the Claude API to teach agentic AI concepts hands-on. Modules completed so far: `module_1/` (Hours 1–3), `module-2/` (Hours 4–7), `module-3/` (Hours 8–11), `module-4/` (Hours 12–16), `module-5/` (Hours 17–21).
 
-Note: `module_1` uses underscores; `module-2` and `module-3` use hyphens. This is intentional.
+Note: `module_1` uses underscores; `module-2` through `module-5` use hyphens. This is intentional.
 
 ## Running labs
 
@@ -16,6 +16,8 @@ Every interactive lab is a Streamlit app:
 streamlit run module_1/hour1_lab_agentic_classifier.py
 streamlit run module-2/hour4_lab_prompt_anatomy.py
 streamlit run module-3/hour8_lab_agent_components.py
+streamlit run module-4/hour12_lab_reflection_pattern.py
+streamlit run module-5/hour17_lab_routing_pattern.py
 ```
 
 Jupyter notebooks (reference material) run via:
@@ -40,6 +42,8 @@ Each module reads its API key from its **own** `.env` file (not the repo root):
 module_1/.env
 module-2/.env
 module-3/.env
+module-4/.env
+module-5/.env
 ```
 
 Each `.env` contains one line: `ANTHROPIC_API_KEY=sk-ant-...`
@@ -53,7 +57,12 @@ Each module has its own `claude_client.py` (not shared across modules). It:
 - Exposes `chat(system, user, max_tokens, temperature) → (text, usage_dict)`
 - Hardcodes `MODEL = "claude-sonnet-4-6"`
 
-All labs in a module import `from claude_client import chat`.
+Modules 4 and 5 extend `claude_client.py` with an additional function:
+- `chat_with_tools(system, messages, tools, max_tokens) → (content_blocks, usage_dict)`
+- `content_blocks` is a list of dicts with `type: "text"` or `type: "tool_use"` entries
+- Required for any lab that uses Claude's function-calling / tool use feature
+
+All labs in a module import `from claude_client import chat`. Tool-use labs also import `chat_with_tools`.
 
 ### Lab structure pattern
 
