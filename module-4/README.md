@@ -17,7 +17,8 @@ module-4/
 ├── hour13_lab_tool_use_pattern.py
 ├── hour14_lab_planning_pattern.py
 ├── hour15_lab_prompt_chaining.py
-└── hour16_lab_combine_patterns.py
+├── hour16_lab_combine_patterns.py
+└── lab_web_research_agent.py   ← bonus demo lab
 ```
 
 Add your Anthropic API key:
@@ -200,6 +201,38 @@ streamlit run module-4/hour16_lab_combine_patterns.py
 
 ---
 
+### `lab_web_research_agent.py` — Bonus: Web Research Agent
+
+**Demo lab.** An agent that searches four real internet sources and synthesises a structured report.
+Designed to show students how an agentic system selects sources, makes multi-step web queries, and
+combines results — without any pre-baked knowledge base.
+
+**The four real sources queried:**
+
+| Tool | Site | Best for |
+|------|------|----------|
+| `search_wikipedia` | Wikipedia REST API | Background, definitions, history |
+| `search_arxiv` | arXiv.org API | Academic papers, AI/ML research |
+| `search_hackernews` | HN Algolia API | Developer discussions, tech opinions |
+| `search_duckduckgo` | DuckDuckGo Instant Answers | General web, current info, practical topics |
+
+**What students see:**
+1. **Source explorer** — the JSON tool schemas; why each description matters
+2. **Research agent** — enter any topic; Claude autonomously picks 2–5 sources to query; colour-coded trace shows every search and result
+3. **Synthesised report** — structured summary with Overview, Key findings, Sources consulted
+4. **Per-source breakdown** — which sources were queried, how many times, and with what queries
+
+**Key observations:**
+- Claude picks sources based on `description` fields — a science topic triggers arXiv; a tech tool triggers Hacker News
+- Multi-source synthesis produces richer, more balanced output than any single source
+- Real HTTP requests add latency — students see the difference between local tool calls and network tool calls
+
+```bash
+streamlit run module-4/lab_web_research_agent.py
+```
+
+---
+
 ## Quick Start
 
 ```bash
@@ -215,6 +248,9 @@ streamlit run module-4/hour13_lab_tool_use_pattern.py
 streamlit run module-4/hour14_lab_planning_pattern.py
 streamlit run module-4/hour15_lab_prompt_chaining.py
 streamlit run module-4/hour16_lab_combine_patterns.py
+
+# Bonus demo lab (queries real websites)
+streamlit run module-4/lab_web_research_agent.py
 ```
 
 ---
